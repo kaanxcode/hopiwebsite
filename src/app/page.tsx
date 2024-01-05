@@ -1,82 +1,116 @@
+import Image from "next/image";
 import Link from "next/link";
+import logo from "../../public/Logo.png";
+import slider from "../../public/slider.png";
+import bubleicon from "../../public/bubleicon.png";
 
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
 
 export default async function Home() {
-  const hello = await api.post.hello.query({ text: "from tRPC" });
   const session = await getServerAuthSession();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+    <main className="flex min-h-screen flex-col  text-white">
+      <div className="width-100 container mx-auto flex gap-10 bg-white py-4 text-black/50">
+        <h1 className="rounded bg-blue-400 p-4 text-2xl text-white">Hopi</h1>
+        <Image src={logo} alt="" />
+        <nav>
+          <ul className="flex space-x-4 text-2xl">
+            <li>Ürünler</li>
+            <li>Wehopi</li>
+            <li>Kampanyalar</li>
+            <li>Markalar</li>
+            <li>Hopi</li>
+            <li>Blog</li>
+          </ul>
+        </nav>
+        <div>
+          <input
+            type="text"
+            name="searchInput"
+            id="searchInput"
+            placeholder="Sana Nasıl Yardımcı Olabilirim?"
+            className="rounded-md border border-gray-300 p-2"
+          />
         </div>
-        <div className="flex flex-col items-center gap-2">
+        <div className="ml-auto flex flex-col items-end justify-center rounded-full bg-fuchsia-600  ">
           <p className="text-2xl text-white">
-            {hello ? hello.greeting : "Loading tRPC query..."}
+            {session && <span>Logged in as {session.user?.name}</span>}
           </p>
-
-          <div className="flex flex-col items-center justify-center gap-4">
-            <p className="text-center text-2xl text-white">
-              {session && <span>Logged in as {session.user?.name}</span>}
-            </p>
-            <Link
-              href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-            >
-              {session ? "Sign out" : "Sign in"}
-            </Link>
-          </div>
+          <Link
+            href={session ? "/api/auth/signout" : "/api/auth/signin"}
+            className="rounded-full bg-white/10 px-4 py-2 font-semibold no-underline transition hover:bg-white/20"
+          >
+            {session ? "Çıkış Yap" : "Giriş Yap Yada Kayıt Ol"}
+          </Link>
         </div>
-
-        <CrudShowcase />
+      </div>
+      <div>
+        <Image src={slider} alt="" className="w-full" />
+      </div>
+      <div className="flex justify-center gap-2 bg-white text-black ">
+        <ul>
+          <li className="ml-10">
+            <Image src={bubleicon} alt="" />{" "}
+          </li>
+          <li className="text-xl">Hopi Dünyası</li>
+          <li className="w-1/5 text-center">
+            Yüzlerce markada kampayalara ek tekliflerle yüzlerce dükkanda anında
+            alışveriş yapma ve hop diye ödeme imkanı sundma
+          </li>
+          <li>
+            <button className="rounded-full bg-gray-600 p-2 text-white">
+              Daha Fazla Gör
+            </button>
+          </li>
+        </ul>
+        <ul>
+          <li className="ml-10">
+            <Image src={bubleicon} alt="" />{" "}
+          </li>
+          <li className="text-xl">Hopi Dünyası</li>
+          <li className="w-1/5 text-center">
+            Yüzlerce markada kampayalara ek tekliflerle yüzlerce dükkanda anında
+            alışveriş yapma ve hop diye ödeme imkanı sundma
+          </li>
+          <li>
+            <button className="rounded-full bg-gray-600 p-2 text-white">
+              Daha Fazla Gör
+            </button>
+          </li>
+        </ul>
+        <ul>
+          <li className="ml-10">
+            <Image src={bubleicon} alt="" />{" "}
+          </li>
+          <li className="text-xl">Hopi Dünyası</li>
+          <li className="w-1/5 text-center">
+            Yüzlerce markada kampayalara ek tekliflerle yüzlerce dükkanda anında
+            alışveriş yapma ve hop diye ödeme imkanı sundma
+          </li>
+          <li>
+            <button className="rounded-full bg-gray-600 p-2 text-white">
+              Daha Fazla Gör
+            </button>
+          </li>
+        </ul>
+        <ul>
+          <li className="ml-10">
+            <Image src={bubleicon} alt="" />{" "}
+          </li>
+          <li className="text-xl">Hopi Dünyası</li>
+          <li className="w-1/5 text-center">
+            Yüzlerce markada kampayalara ek tekliflerle yüzlerce dükkanda anında
+            alışveriş yapma ve hop diye ödeme imkanı sundma
+          </li>
+          <li>
+            <button className="rounded-full bg-gray-600 p-2 text-white">
+              Daha Fazla Gör
+            </button>
+          </li>
+        </ul>
       </div>
     </main>
-  );
-}
-
-async function CrudShowcase() {
-  const session = await getServerAuthSession();
-  if (!session?.user) return null;
-
-  const latestPost = await api.post.getLatest.query();
-
-  return (
-    <div className="w-full max-w-xs">
-      {latestPost ? (
-        <p className="truncate">Your most recent post: {latestPost.name}</p>
-      ) : (
-        <p>You have no posts yet.</p>
-      )}
-
-      <CreatePost />
-    </div>
   );
 }
